@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-cn">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>Canvas Test</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #myCanvas{
+        margin: 0 auto;
+        display: block;
+    }
+</style>
+<body>
+    <div>
+        <canvas id="myCanvas">你的浏览器不支持HTML5 Canvas</canvas>
+    </div>
+    <div class="button">
+        <button id="startBtn" type="button">开始</button>
+        <button id="stopBtn" type="button">停止</button>
+    </div>
+</body>
+<script type="text/javascript" src="js/lib/require.js"></script>
+<script type="text/javascript" src="js/routerConfig.js"></script>
+<script type="text/javascript">
+	require(['canvas'], function(canvas){
+		var _canvas = new canvas('myCanvas');
+	});
+	/*var startBtn = document.getElementById('startBtn');
+	var stopBtn = document.getElementById('stopBtn');
+    var canvas = document.getElementById('myCanvas');
+    canvas.offsetWidth = document.offsetWidth;
+    canvas.offsetHeight = document.offsetHeight;
+    var canvasWidth = canvas.offsetWidth;
+    var canvasHeight = canvas.offsetHeight;
+    var playAnimation = true;
+    startBtn.addEventListener('click', function(){
+        playAnimation = true;
+        animate();
+    }, false);
+    stopBtn.addEventListener('click', function(){
+        playAnimation = false;
+    }, false);
+    var x = 0;
+    function animate(){
+        x++;
+        var ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        ctx.fillRect(x, 250, 10, 10);
+        if(playAnimation) setTimeout(animate, 30);
+    }
+    var shape = function(x, y){
+        this.x = x;
+        this.y = y;
+    }
+    var shapes = [];
+    shapes.push(new shape(0, 0));
+    shapes.push(new shape(40, 40));
+    shapes.push(new shape(80, 80));
+    
+    var shapesWidth = [];
+    function addImage(x, y){
+        var img = new Image();
+        img.src = 'images/egg_1.png';
+        var ctx = canvas.getContext('2d');
+        img.onload = function(){
+            ctx.drawImage(img, x, y, 158, 187);
+            moveImage(x, y, img);
+        }
+    }
+    
+    var _back = false;
+    function moveImage(x, y, obj){
+        var ctx = canvas.getContext('2d');
+        if(_back){
+            var _x = x - 1;
+        }else{
+            var _x = x + 1;
+        }
+        if(_x )
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        ctx.drawImage(obj, x, y);
+        setTimeout(function(){
+            moveImage(_x, y, obj);
+        }, 30);
+    }
+    
+    canvas.addEventListener('click', function(e){
+        var x = e.offsetX;
+        var y = e.offsetY;
+    }, false);
+    /*for(var i = 0; i < shapes.length; i++){
+        addImage(shapes[i].x, shapes[i].y);
+    }*/
+    //addImage(shapes[0].x, shapes[0].y);
+</script>
+</html>
